@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="calendar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/calendar/shamsi_time.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/calendar/joda-time-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

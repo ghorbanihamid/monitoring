@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="javaee">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/javax.annotation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/javax.ejb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/javax.jms.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/javax.resource.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/jstl-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/jta-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/mail-1.4.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/persistence-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javaee-6/standard-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

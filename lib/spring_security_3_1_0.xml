@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="spring-security 3.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-acl-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-aspects-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-cas-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-config-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-core-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-crypto-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-ldap-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-openid-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-remoting-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-taglibs-3.1.0.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/spring-security-web-3.1.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-acl-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-cas-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-config-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-core-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-crypto-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-ldap-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-openid-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-remoting-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-taglibs-3.1.0.RELEASE-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-security-3.1.0/source/spring-security-web-3.1.0.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
