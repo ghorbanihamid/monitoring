@@ -21,5 +21,8 @@ This application uses the following technologies:
 - jasperreport-5.0.0
 - log4j-1.2
 - Mysql-5.1
+- javascript
+- jquery
+- jcaptcha
 
 
