@@ -10,6 +10,7 @@ after running the application:
 6)	register company’s server’s info (IP Address, ...) to monitor them
 7)	set threshold for monitoring parameters to make alarm.
 
+There are some pictures of application forms inside docs folder.
 
 This application uses the following technologies:
 - Struts-2.3.16.3
