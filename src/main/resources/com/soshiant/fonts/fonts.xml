@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+
+    <fontFamily name="BNazanin">
+        <normal>com/kli/fonts/bnazanin/BNazanin.ttf</normal>
+        <bold>com/kli/fonts/fonts/bnazanin/BNaznnBd.ttf</bold>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Tahoma">
+        <normal>com/kli/fonts/tahoma/tahoma.ttf</normal>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Lotus">
+        <normal>com/kli/fonts/lotus/lotus.ttf</normal>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Titr">
+        <normal>com/kli/fonts/titr/titr.ttf</normal>
+        <bold>com/kli/fonts/titr/titrb.ttf</bold>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Verdana">
+        <normal>com/kli/fonts/verdana/verdana.ttf</normal>
+        <bold>com/kli/fonts/verdana/verdanab.ttf</bold>
+        <italic>com/kli/fonts/verdana/verdanai.ttf</italic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+
+
+    <fontFamily name="DejaVu Sans">
+        <normal>com/kli/fonts/dejavu/DejaVuSans.ttf</normal>
+        <bold>com/kli/fonts/dejavu/DejaVuSans-Bold.ttf</bold>
+        <italic>com/kli/fonts/dejavu/DejaVuSans-Oblique.ttf</italic>
+        <boldItalic>com/kli/fonts/dejavu/DejaVuSans-BoldOblique.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="com.soshiant.jasperreport.jasperreports.html">'DejaVu Sans', Arial, Helvetica, sans-serif</export>
+            <export key="com.soshiant.jasperreport.jasperreports.xhtml">'DejaVu Sans', Arial, Helvetica, sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+
+    <fontFamily name="DejaVu Serif">
+        <normal>com/kli/fonts/dejavu/DejaVuSerif.ttf</normal>
+        <bold>com/kli/fonts/dejavu/DejaVuSerif-Bold.ttf</bold>
+        <italic>com/kli/fonts/dejavu/DejaVuSerif-Italic.ttf</italic>
+        <boldItalic>com/kli/fonts/dejavu/DejaVuSerif-BoldItalic.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="com.soshiant.eauction.jasperreports.html">'DejaVu Serif', 'Times New Roman', Times, serif</export>
+            <export key="com.soshiant.jasperreports.xhtml">'DejaVu Serif', 'Times New Roman', Times, serif</export>
+        </exportFonts>
+    </fontFamily>
+
+    <fontFamily name="DejaVu Sans Mono">
+        <normal>com/kli/fonts/dejavu/DejaVuSansMono.ttf</normal>
+        <bold>com/kli/fonts/dejavu/DejaVuSansMono-Bold.ttf</bold>
+        <italic>com/kli/fonts/dejavu/DejaVuSansMono-Oblique.ttf</italic>
+        <boldItalic>com/kli/fonts/dejavu/DejaVuSansMono-BoldOblique.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+        <exportFonts>
+            <export key="com.soshiant.jasperreport.jasperreports.html">'DejaVu Sans Mono', 'Courier New', Courier, monospace</export>
+            <export key="com.soshiant.jasperreport.jasperreports.xhtml">'DejaVu Sans Mono', 'Courier New', Courier, monospace</export>
+        </exportFonts>
+    </fontFamily>
+
+    <!--
+            Mapping Java logical fonts, for the sake of HTML export only.
+        -->
+
+    <fontFamily name="SansSerif">
+        <exportFonts>
+            <export key="com.soshiant.jasperreport.jasperreports.html">'DejaVu Sans', Arial, Helvetica, sans-serif</export>
+            <export key="com.soshiant.jasperreport.jasperreports.xhtml">'DejaVu Sans', Arial, Helvetica, sans-serif</export>
+        </exportFonts>
+    </fontFamily>
+    <fontFamily name="Serif">
+        <exportFonts>
+            <export key="com.soshiant.jasperreport.jasperreports.html">'DejaVu Serif', 'Times New Roman', Times, serif</export>
+            <export key="com.soshiant.jasperreport.jasperreports.xhtml">'DejaVu Serif', 'Times New Roman', Times, serif</export>
+        </exportFonts>
+    </fontFamily>
+    <fontFamily name="Monospaced">
+        <exportFonts>
+            <export key="com.soshiant.jasperreport.jasperreports.html">'DejaVu Sans Mono', 'Courier New', Courier, monospace</export>
+            <export key="com.soshiant.jasperreport.jasperreports.xhtml">'DejaVu Sans Mono', 'Courier New', Courier, monospace</export>
+        </exportFonts>
+    </fontFamily>
+
+</fontFamilies>

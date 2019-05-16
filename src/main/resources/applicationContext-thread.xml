@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+
+       default-autowire="byName"> <!-- Set default autowiring to byName so that beans are injected based on Name not by TYPE -->
+
+
+
+    <bean id="sendAlarmTask"          class="com.soshiant.server.periodictasks.SendAlarmTask" />
+    <bean id="sendSmsTask"            class="com.soshiant.server.periodictasks.SendSmsTask" />
+    <bean id="receiveSmsTask"         class="com.soshiant.server.periodictasks.ReceiveSmsTask" />
+
+<!--====================================================================================================================-->
+    <bean id="sendAlarmSchedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="sendAlarmTask" />
+        <property name="targetMethod" value="sendAlarmMessages" />
+    </bean>
+
+    <bean id="sendSMSSchedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="sendSmsTask" />
+        <property name="targetMethod" value="sendMultipleMessages" />
+    </bean>
+
+    <bean id="receiveSMSSchedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="receiveSmsTask" />
+        <property name="targetMethod" value="receiveSMSMessages" />
+    </bean>
+
+    <bean id="processReceivedSMSSchedulerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+        <property name="targetObject" ref="receiveSmsTask" />
+        <property name="targetMethod" value="processReceivedSMSMessages" />
+    </bean>
+
+<!--====================================================================================================================-->
+    <bean id="timerTaskSendAlarm"  class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="timerTask" ref="sendAlarmSchedulerTask" />
+        <property name="delay"     value="60000" />     <!--  after 1 minutes -->
+        <property name="period"    value="120000" />   <!--  each 2 minute -->
+    </bean>
+
+    <bean id="timerTaskSendSms"    class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="timerTask" ref="sendSMSSchedulerTask" />
+        <property name="delay"     value="300000" />     <!--  after 5 minutes -->
+        <property name="period"    value="7200000" />   <!--  each 2 hours -->
+    </bean>
+
+    <bean id="timerTaskGetReceivedSms" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="timerTask" ref="receiveSMSSchedulerTask" />
+        <property name="delay" value="600000" />     <!--  after 10 minutes -->
+        <property name="period" value="7200000" />   <!--  each 2 hours -->
+    </bean>
+
+    <bean id="timerTaskSmsProcessing" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <property name="timerTask" ref="processReceivedSMSSchedulerTask" />
+        <property name="delay" value="1200000" />    <!--  after 15 minutes -->
+        <property name="period" value="7200000" />   <!--  each 2 hours -->
+    </bean>
+
+    <bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+        <property name="scheduledTimerTasks">
+            <list>
+                <!--<ref local="timerTaskMonitoringServers" />-->
+                <ref local="timerTaskSendSms" />
+                <ref local="timerTaskGetReceivedSms" />
+                <ref local="timerTaskSmsProcessing" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="mail.google.com"/>
+    </bean>
+
+</beans>

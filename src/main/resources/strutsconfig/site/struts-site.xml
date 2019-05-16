@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="sitePackage" extends="tiles-default" namespace="/">
+
+        <action name="siteInputAction" class="com.soshiant.server.action.site.SiteAction" method="showSiteInputForm" >
+            <result name="input"   type="tiles">siteInput</result>
+            <result name="error"   type="tiles">siteFailed</result>
+            <result name="success" type="tiles">siteResult</result>
+        </action>
+
+        <action name="siteSaveAction" class="com.soshiant.server.action.site.SiteAction" method="saveSiteInfo" >
+            <result name="input"   type="tiles">siteInput</result>
+            <result name="error"   type="tiles">siteFailed</result>
+            <result name="success" type="tiles">siteResult</result>
+        </action>
+
+        <action name="siteListInputAction" class="com.soshiant.server.action.site.SiteListAction" method="showSiteListInputForm">
+            <result name="input"   type="tiles">siteListInput</result>
+            <result name="error"   type="tiles">siteListFailed</result>
+            <result name="success" type="tiles">siteListResult</result>
+        </action>
+
+
+    </package>
+
+    <package name="siteJsonPackage" extends="json-default">
+
+        <global-results>
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="Exception" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+        </global-results>
+
+        <global-exception-mappings>
+
+            <exception-mapping exception="java.lang.Exception" result="error" />
+
+        </global-exception-mappings>
+
+<!--====================================================================================================================-->
+        <action name="siteInfoJsonAction" class="com.soshiant.server.action.site.SiteAction" method="fetchSiteInfo" >
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="success" type="json">
+                <param name="root">model</param>
+            </result>
+        </action>
+
+    <!--====================================================================================================================-->
+        <action name="siteListJsonAction" class="com.soshiant.server.action.site.SiteListAction" method="fetchSiteList">
+
+            <!--<result name="input" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--<result name="error" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <result name="success" type="json">
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">siteList\[\d+\]\..+$, actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+                <param name="includeProperties">^siteList\[\d+\]\..*</param>
+            </result>
+        </action>
+    <!--====================================================================================================================-->
+    </package>
+
+</struts>

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="homeLayout"          template="/pages/decorator/homeLayout.jsp">
+        <put-attribute name="title"        value="Welcome to Monitoring web site"/>
+        <put-attribute name="header"       value="/pages/decorator/homeHeader.jsp"/>
+        <!--<put-attribute name="menu"    value="/pages/decorator/menu.jsp"/>-->
+        <put-attribute name="body"         value="/pages/decorator/body.jsp"/>
+        <put-attribute name="footer"       value="/pages/decorator/footer.jsp"/>
+    </definition>
+
+    <definition name="baseLayout"          template="/pages/decorator/baseLayout.jsp">
+        <put-attribute name="title"        value="Template"/>
+        <put-attribute name="header"       value="/pages/decorator/header.jsp"/>
+        <put-attribute name="topMenu"      value="/pages/decorator/topMenu.jsp"/>
+        <put-attribute name="leftMenu"     value="/pages/decorator/leftMenu.jsp"/>
+        <!--<put-attribute name="body"     value="/pages/decorator/body.jsp"/>-->
+        <!--<put-attribute name="footer"  value="/pages/decorator/footer.jsp"/>-->
+    </definition>
+
+    <definition name="reportBaseLayout"    template="/pages/decorator/reportBaseLayout.jsp">
+        <put-attribute name="title"        value="Report Layout"/>
+        <put-attribute name="header"       value="/pages/decorator/header.jsp"/>
+        <put-attribute name="topMenu"      value="/pages/decorator/topMenu.jsp"/>
+        <put-attribute name="body"         value="/pages/decorator/body.jsp"/>
+    </definition>
+
+    <definition name="changePasswordBaseLayout" template="/pages/decorator/changePasswordBaseLayout.jsp">
+        <put-attribute name="title"             value="Session Layout"/>
+        <put-attribute name="header"            value="/pages/decorator/header.jsp"/>
+        <put-attribute name="body"              value="/pages/decorator/body.jsp"/>
+    </definition>
+
+    <definition name="leftMenuLessBaseLayout"  template="/pages/decorator/leftMenuLessBaseLayout.jsp">
+        <put-attribute name="title"            value="Session Layout"/>
+        <put-attribute name="header"           value="/pages/decorator/header.jsp"/>
+        <put-attribute name="topMenu"          value="/pages/decorator/topMenu.jsp"/>
+        <put-attribute name="body"             value="/pages/decorator/body.jsp"/>
+    </definition>
+<!--============================================ Home Page =============================================================-->
+
+    <definition name="welcomeInput"   extends="homeLayout">
+        <put-attribute name="title"   value="Welcome to Monitoring web site"/>
+        <put-attribute name="body"    value="/pages/login/homeLogin.jsp"/>
+    </definition>
+
+    <definition name="loginInput"     extends="homeLayout">
+        <put-attribute name="title"   value="Welcome to Monitoring web site"/>
+        <put-attribute name="body"    value="/pages/login/homeLogin.jsp"/>
+    </definition>
+
+    <definition name="userWorkSheet" extends="baseLayout">
+        <put-attribute name="title"  value="Welcome to Monitoring web site"/>
+        <put-attribute name="body"   value="/pages/common/userWorkSheet.jsp"/>
+    </definition>
+
+    <definition name="changePasswordSheet" extends="changePasswordBaseLayout">
+        <put-attribute name="title"        value="Change Password Input"/>
+        <put-attribute name="body"         value="/pages/user/changepassword/changePasswordInput.jsp"/>
+    </definition>
+
+<!--============================================ Staff =================================================================-->
+
+    <definition name="staffInput"    extends="baseLayout">
+        <put-attribute name="title"  value="Staff Input"/>
+        <put-attribute name="body"   value="/pages/staff/staffInput.jsp"/>
+    </definition>
+
+    <definition name="staffFailed"   extends="baseLayout">
+        <put-attribute name="title"  value="Staff Failed"/>
+        <put-attribute name="body"   value="/pages/staff/staffFailure.jsp"/>
+    </definition>
+
+    <definition name="staffResult"   extends="baseLayout">
+        <put-attribute name="title"  value="Staff Result"/>
+        <put-attribute name="body"   value="/pages/staff/staffResult.jsp"/>
+    </definition>
+
+    <!--============================================ Staff List=================================================================-->
+
+    <definition name="staffListInput"    extends="reportBaseLayout">
+        <put-attribute name="title"      value="Staff Search Input"/>
+        <put-attribute name="body"       value="/pages/staff/staffsList.jsp"/>
+    </definition>
+
+    <definition name="staffListFailed"   extends="reportBaseLayout">
+        <put-attribute name="title"      value="Student Search Failed"/>
+        <put-attribute name="body"       value="/pages/staff/staffFailure.jsp"/>
+    </definition>
+
+    <definition name="staffListResult"   extends="reportBaseLayout">
+        <put-attribute name="title"      value="Student Search Result"/>
+        <put-attribute name="body"       value="/pages/staff/staffsList.jsp"/>
+    </definition>
+
+    <!--============================================ Staff Positions=================================================================-->
+
+    <definition name="staffPositionsInput"  extends="baseLayout">
+        <put-attribute name="title"         value="Staff Positions Input"/>
+        <put-attribute name="body"          value="/pages/staff/staffPositionInput.jsp"/>
+    </definition>
+
+    <definition name="staffPositionsFailed" extends="baseLayout">
+        <put-attribute name="title"         value="Staff Positions Failed"/>
+        <put-attribute name="body"          value="/pages/staff/staffPositionFailure.jsp"/>
+    </definition>
+
+    <definition name="staffPositionsResult" extends="baseLayout">
+        <put-attribute name="title"         value="Staff Positions Result"/>
+        <put-attribute name="body"          value="/pages/staff/staffPositionInput.jsp"/>
+    </definition>
+
+    <!--============================================ Daily Shifts=================================================================-->
+
+    <definition name="dailyShiftInput"  extends="baseLayout">
+        <put-attribute name="title"         value="dailyShift Input"/>
+        <put-attribute name="body"          value="/pages/staff/shift/dailyShiftInput.jsp"/>
+    </definition>
+
+    <definition name="dailyShiftFailed" extends="baseLayout">
+        <put-attribute name="title"         value="Daily Shift Failed"/>
+        <put-attribute name="body"          value="/pages/staff/shift/dailyShiftFailure.jsp"/>
+    </definition>
+
+    <definition name="dailyShiftResult" extends="baseLayout">
+        <put-attribute name="title"         value="Daily Shift Result"/>
+        <put-attribute name="body"          value="/pages/staff/shift/dailyShiftInput.jsp"/>
+    </definition>
+
+    <!--============================================== Site =================================================================-->
+
+    <definition name="siteInput"     extends="baseLayout">
+        <put-attribute name="title"  value="Site Input"/>
+        <put-attribute name="body"   value="/pages/site/siteInput.jsp"/>
+    </definition>
+
+    <definition name="siteFailed"    extends="baseLayout">
+        <put-attribute name="title"  value="Site Failed"/>
+        <put-attribute name="body"   value="/pages/site/siteFailure.jsp"/>
+    </definition>
+
+    <definition name="siteResult"    extends="baseLayout">
+        <put-attribute name="title"  value="Site Result"/>
+        <put-attribute name="body"   value="/pages/site/siteResult.jsp"/>
+    </definition>
+
+    <!--============================================ Site List=================================================================-->
+
+    <definition name="siteListInput"    extends="reportBaseLayout">
+        <put-attribute name="title"     value="Site Search Input"/>
+        <put-attribute name="body"      value="/pages/site/sitesList.jsp"/>
+    </definition>
+
+    <definition name="siteListFailed"   extends="baseLayout">
+        <put-attribute name="title"     value="Site Search Failed"/>
+        <put-attribute name="body"      value="/pages/site/siteFailure.jsp"/>
+    </definition>
+
+    <definition name="siteListResult"   extends="reportBaseLayout">
+        <put-attribute name="title"     value="Site Search Result"/>
+        <put-attribute name="body"      value="/pages/site/sitesList.jsp"/>
+    </definition>
+
+    <!--============================================== Server =================================================================-->
+
+    <definition name="serverInput"     extends="baseLayout">
+        <put-attribute name="title"  value="Server Input"/>
+        <put-attribute name="body"   value="/pages/server/serverInput.jsp"/>
+    </definition>
+
+    <definition name="serverFailed"    extends="baseLayout">
+        <put-attribute name="title"  value="Server Failed"/>
+        <put-attribute name="body"   value="/pages/server/serverFailure.jsp"/>
+    </definition>
+
+    <definition name="serverResult"    extends="baseLayout">
+        <put-attribute name="title"  value="Server Result"/>
+        <put-attribute name="body"   value="/pages/server/serverResult.jsp"/>
+    </definition>
+
+    <!--============================================ Monitorable Servers List=================================================================-->
+
+    <definition name="monitorableServerListInput"    extends="baseLayout">
+        <put-attribute name="title"       value="monitorable Server List Input"/>
+        <put-attribute name="body"        value="/pages/server/monitorableServersList.jsp"/>
+    </definition>
+
+    <definition name="monitorableServerListFailed"   extends="baseLayout">
+        <put-attribute name="title"       value="monitorable Server List Failed"/>
+        <put-attribute name="body"        value="/pages/server/serverFailure.jsp"/>
+    </definition>
+
+    <definition name="monitorableServerListResult"   extends="baseLayout">
+        <put-attribute name="title"       value="monitorable Server List Result"/>
+        <put-attribute name="body"        value="/pages/server/monitorableServersList.jsp"/>
+    </definition>
+
+    <!--============================================ Monitor Server=================================================================-->
+
+    <definition name="monitorServerInput" extends="baseLayout">
+        <put-attribute name="title"       value="monitor ServerInput"/>
+        <put-attribute name="body"        value="/pages/server/monitor/monitorServer.jsp"/>
+    </definition>
+
+    <definition name="monitorServerFailed" extends="baseLayout">
+        <put-attribute name="title"        value="monitor Server Failed"/>
+        <put-attribute name="body"         value="/pages/server/monitor/monitorServer.jsp"/>
+    </definition>
+
+    <definition name="monitorServerResult" extends="baseLayout">
+        <put-attribute name="title"        value="monitor Server Result"/>
+        <put-attribute name="body"         value="/pages/server/monitor/monitorServer.jsp"/>
+    </definition>
+
+    <!--============================================ Rmf Config =================================================================-->
+
+    <definition name="rmfConfigInput" extends="baseLayout">
+        <put-attribute name="title"       value="rmfConfigInput"/>
+        <put-attribute name="body"        value="/pages/server/monitor/rmfConfigInput.jsp"/>
+    </definition>
+
+    <definition name="rmfConfigFailed" extends="baseLayout">
+        <put-attribute name="title"        value="rmfConfig Failed"/>
+        <put-attribute name="body"         value="/pages/server/monitor/rmfConfigInput.jsp"/>
+    </definition>
+
+    <definition name="rmfConfigResult" extends="baseLayout">
+        <put-attribute name="title"        value="rmfConfig Result"/>
+        <put-attribute name="body"         value="/pages/server/monitor/rmfConfigInput.jsp"/>
+    </definition>
+
+    <!--============================================ chart =================================================================-->
+
+    <definition name="chartInput" extends="reportBaseLayout">
+        <put-attribute name="title"       value="Chart Input"/>
+        <put-attribute name="body"        value="/pages/chart/chart.jsp"/>
+    </definition>
+
+    <definition name="chartFailed" extends="reportBaseLayout">
+        <put-attribute name="title"        value="Chart Failed"/>
+        <put-attribute name="body"         value="/pages/chart/chart.jsp"/>
+    </definition>
+
+    <definition name="chartResult" extends="reportBaseLayout">
+        <put-attribute name="title"        value="Chart Result"/>
+        <put-attribute name="body"         value="/pages/chart/chart.jsp"/>
+    </definition>
+
+    <definition name="chartReportInput" extends="reportBaseLayout">
+        <put-attribute name="title"       value="Chart Report Input"/>
+        <put-attribute name="body"        value="/pages/chart/report/chartReport.jsp"/>
+    </definition>
+
+    <definition name="chartReportFailed" extends="reportBaseLayout">
+        <put-attribute name="title"        value="Chart Report Failed"/>
+        <put-attribute name="body"         value="/pages/chart/report/chartReport.jsp"/>
+    </definition>
+
+    <definition name="chartReportResult" extends="reportBaseLayout">
+        <put-attribute name="title"        value="Chart Report Result"/>
+        <put-attribute name="body"         value="/pages/chart/report/chartReport.jsp"/>
+    </definition>
+
+    <!--============================================ Pie Chart =================================================================-->
+
+    <definition name="pieChartInput" extends="baseLayout">
+        <put-attribute name="title"       value="Chart Input"/>
+        <put-attribute name="body"        value="/pages/chart/pieChart.jsp"/>
+    </definition>
+
+    <definition name="pieChartFailed" extends="baseLayout">
+        <put-attribute name="title"        value="Chart Failed"/>
+        <put-attribute name="body"         value="/pages/chart/pieChart.jsp"/>
+    </definition>
+
+    <definition name="pieChartResult" extends="baseLayout">
+        <put-attribute name="title"        value="Chart Result"/>
+        <put-attribute name="body"         value="/pages/chart/pieChart.jsp"/>
+    </definition>
+
+<!--============================================== Change UserName ========================================================-->
+
+    <definition name="changeUserNameInput" extends="baseLayout">
+        <put-attribute name="title"        value="Change Email Input"/>
+        <put-attribute name="body"         value="/pages/user/changeusername/changeUserNameInput.jsp"/>
+    </definition>
+
+    <definition name="changeUserNameResult" extends="baseLayout">
+        <put-attribute name="title"         value="Student Result"/>
+        <put-attribute name="body"          value="/pages/user/changeusername/changeUserNameResult.jsp"/>
+    </definition>
+
+    <!--<definition name="changeUserNameFailed" extends="baseLayout">-->
+        <!--<put-attribute name="title"         value="Student Result"/>-->
+        <!--<put-attribute name="body"          value="/pages/user/changeusername/changeUserNameFailed.jsp"/>-->
+    <!--</definition>-->
+
+<!--============================================== Change Password ========================================================-->
+
+    <definition name="changePasswordInput" extends="baseLayout">
+        <put-attribute name="title"        value="Change Email Input"/>
+        <put-attribute name="body"         value="/pages/user/changepassword/changePasswordInput.jsp"/>
+    </definition>
+
+    <definition name="changePasswordResult" extends="baseLayout">
+        <put-attribute name="title"         value="Student Result"/>
+        <put-attribute name="body"          value="/pages/user/changepassword/changePasswordResult.jsp"/>
+    </definition>
+
+    <definition name="changePasswordFailed" extends="baseLayout">
+        <put-attribute name="title"         value="Student Result"/>
+        <put-attribute name="body"          value="/pages/user/changepassword/changePasswordFailed.jsp"/>
+    </definition>
+
+<!--============================================ Reset Password ========================================================-->
+
+    <definition name="resetPasswordInput" extends="baseLayout">
+        <put-attribute name="title"       value="Reset Password Input"/>
+        <put-attribute name="body"        value="/pages/user/resetpassword/resetPasswordInput.jsp"/>
+    </definition>
+
+    <definition name="resetPasswordResult" extends="baseLayout">
+        <put-attribute name="title"        value="Reset Password Result"/>
+        <put-attribute name="body"         value="/pages/user/resetpassword/resetPasswordResult.jsp"/>
+    </definition>
+
+    <definition name="resetPasswordFailed" extends="baseLayout">
+        <put-attribute name="title"      value="Reset Password Result"/>
+        <put-attribute name="body"       value="/pages/user/resetpassword/resetPasswordFailed.jsp"/>
+    </definition>
+
+<!--============================================== Change Email ========================================================-->
+
+    <definition name="changeEmailAddressInput" extends="baseLayout">
+        <put-attribute name="title"     value="Change Email Input"/>
+        <put-attribute name="body"      value="/pages/user/changeemail/changeEmailInput.jsp"/>
+    </definition>
+
+    <definition name="changeEmailAddressResult" extends="baseLayout">
+        <put-attribute name="title"      value="Student Result"/>
+        <put-attribute name="body"       value="/pages/user/changeemail/changeEmailResult.jsp"/>
+    </definition>
+
+    <definition name="changeEmailAddressFailed" extends="baseLayout">
+        <put-attribute name="title"      value="Student Result"/>
+        <put-attribute name="body"       value="/pages/user/changeemail/changeEmailFailed.jsp"/>
+    </definition>
+<!--==============================================  APPLog List ========================================================-->
+
+    <definition name="appLogListInput"    extends="reportBaseLayout">
+        <put-attribute name="title"       value="AppLog List Input"/>
+        <put-attribute name="body"        value="/pages/log/appLogList.jsp"/>
+    </definition>
+
+    <definition name="appLogListFailed"   extends="baseLayout">
+        <put-attribute name="title"       value="AppLog List Failed"/>
+        <put-attribute name="body"        value="/pages/log/appLogList.jsp"/>
+    </definition>
+
+    <definition name="appLogListResult"   extends="reportBaseLayout">
+        <put-attribute name="title"       value="AppLog List Result"/>
+        <put-attribute name="body"        value="/pages/log/appLogList.jsp"/>
+    </definition>
+
+<!--============================================== File Download =======================================================-->
+
+    <definition name="fileDownloadFailed"  extends="baseLayout">
+        <put-attribute name="title"        value="File Download Error"/>
+        <put-attribute name="body"         value="/pages/file/downloadFileFailure.jsp"/>
+    </definition>
+
+<!--============================================== File Download =======================================================-->
+
+
+</tiles-definitions>

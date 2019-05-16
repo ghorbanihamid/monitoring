@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%p %c{1}.%M(%L) | %m%n"/>
+            <!--value="[monitoringWebApp] %p [%t] %c{1}.%M(%L) | %m%n"/>-->
+        </layout>
+
+    </appender>
+
+    <appender name="rollingFile" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="monitoring.log"/>
+        <param name="MaxFileSize" value="1000KB"/>
+        <param name="outputHeader" value="true" />
+        <param name="MaxBackupIndex" value="4"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %l - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="LogAppToFile" class="com.soshiant.server.facade.log.AppLogFileAppender">
+        <!--<param name="bufferedIO"   value="false" />-->
+        <param name="maxFileSize" value="5000KB" />
+        <param name="fileNamePrefix" value="MONITORING_APPLOG" />
+        <param name="fileExtension" value=".txt" />
+        <param name="filePath" value="/LOG/MONITORINGLOG/" />
+        <!--<param name="Threshold" value="WARN"/>-->
+        <!--<param name="additivity" value="false"/>-->
+        <!--<layout class="org.apache.log4j.PatternLayout">-->
+            <!--<param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />-->
+        <!--</layout>-->
+        <layout class="com.soshiant.server.facade.log.AppLogCsvLayout">
+            <param name="outputHeader" value="true" />
+            <param name="separator" value="~" />
+            <param name="modelClass" value="com.soshiant.server.model.log.AppLog" />
+            <param name="conversionPattern" value="id~doerId~doerType~errorCode~actionCode~actionName~appMessage~sessionId~doerIp~browserName~url~logTime~mainOperation~passiveCustId~passiveCustType~logDate~sqlText" />
+        </layout>
+
+    </appender>
+
+    <appender name="saveRmfMonitoringDataToFile" class="com.soshiant.server.facade.log.AppLogFileAppender">
+        <!--<param name="bufferedIO"   value="false" />-->
+        <param name="maxFileSize" value="5000KB" />
+        <param name="fileNamePrefix" value="RMF_MONITORING_DATA" />
+        <param name="fileExtension" value=".txt" />
+        <param name="filePath" value="/LOG/RMFMONITORING/" />
+        <!--<param name="Threshold" value="WARN"/>-->
+        <!--<param name="additivity" value="false"/>-->
+        <!--<layout class="org.apache.log4j.PatternLayout">-->
+            <!--<param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />-->
+        <!--</layout>-->
+        <layout class="com.soshiant.server.facade.log.AppLogCsvLayout">
+            <param name="outputHeader" value="true" />
+            <param name="separator" value="~" />
+            <param name="modelClass" value="com.soshiant.server.model.monitoring.MainFrame.RMF.RMFMonitoringData" />
+            <param name="conversionPattern" value="id~gathererInterval~dataRange~persianTransDate~serverId~localStartTime~localEndTime~utcStartTime~utcEndTime~rmfMetricId~rmfMetricDesc~rowEx~rowValue~rowPer~rowLabel" />
+        </layout>
+
+    </appender>
+
+    <!--<logger name="com.opensymphony.xwork2.util.OgnlValueStack">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="net.sf.ehcache">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.springframework">-->
+        <!--<level value="DEBUG"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.apache">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.apache.velocity">-->
+        <!--<level value="FATAL"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.hibernate">-->
+        <!--<level value="DEBUG"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.hibernate.SQL">-->
+        <!--<level value="DEBUG"/>-->
+    <!--</logger>-->
+
+   <!--&lt;!&ndash; http://issues.appfuse.org/browse/APF-736#action_11786 &ndash;&gt;-->
+    <!--<logger name="com.opensymphony.xwork2.util.XWorkConverter">-->
+        <!--<level value="FATAL"/>-->
+    <!--</logger>-->
+
+    <!--&lt;!&ndash; http://issues.appfuse.org/browse/APF-852 &ndash;&gt;-->
+    <!--<logger name="com.opensymphony.xwork2.util.OgnlUtil">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <!--&lt;!&ndash; Turn off warnings from messages.jsp &ndash;&gt;-->
+    <!--<logger name="com.opensymphony.xwork2.util.OgnlValueStack">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.appfuse">-->
+        <!--<level value="ERROR"/>-->
+    <!--</logger>-->
+
+    <logger name="monitoringFileLog">
+        <level value="INFO"/>
+        <appender-ref ref="LogAppToFile"/>
+    </logger>
+
+    <root>
+        <priority value ="debug" />
+        <level value="ERROR"/>
+        <appender-ref ref="CONSOLE"/>
+        <!--<appender-ref ref="rollingFile"/>-->
+    </root>
+
+</log4j:configuration>

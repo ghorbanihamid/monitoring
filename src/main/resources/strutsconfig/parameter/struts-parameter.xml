@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="default" namespace="/" extends="tiles-default">
+        <action name="downloadFileAction" class="com.soshiant.server.action.file.FileDownloadAction">
+            <result name="success" type="stream">
+                <!--<param name="contentType">application/octet-stream</param>-->
+                <param name="contentType">%{contentType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename=%{fileName}</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="error" type="tiles">fileDownloadFailed</result>
+        </action>
+    </package>
+
+    <package name="parameters" extends="json-default">
+
+        <action name="yesNoListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadYesNoList">
+            <result name="success" type="json">
+                <param name="includeProperties">^yesNoList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <action name="genderStatusListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadGenderStatusList">
+            <result name="success" type="json">
+                <param name="includeProperties">^genderStatusList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <action name="maritalStatusListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadMaritalStatusList">
+            <result name="success" type="json">
+                <param name="includeProperties">^maritalStatusList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <action name="educationLevelListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadEducationLevelList">
+            <result name="success" type="json">
+                <param name="includeProperties">^educationLevelList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <action name="languageSkillsListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadLanguageSkills">
+            <result name="success" type="json">
+                <param name="includeProperties">^languageSkillsList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <action name="mainFrameServersListAction" class="com.soshiant.server.action.parameter.ParametersAction" method="loadMainFrameServersListList">
+            <result name="success" type="json">
+                <param name="includeProperties">^mainFrameServersList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+    </package>
+
+</struts>

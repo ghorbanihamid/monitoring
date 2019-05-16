@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+    <!--<constant name="struts.devMode" value="true" />-->
+    <!--<constant name="struts.serve.static.browserCache" value="false" />-->
+
+    <package name="default" extends="struts-default">
+        <interceptors>
+            <interceptor-stack name="sessionInterceptorStack">
+                <interceptor-ref name="timer"/>
+                <interceptor-ref name="logger"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="sessionInterceptorStack"/>
+    </package>
+
+    <package name="welcomePackage" extends="tiles-default">
+
+        <!--<interceptors>-->
+            <!--<interceptor name="sessionInterceptor" class="com.soshiant.server.interceptor.SessionInterceptor" />-->
+        <!--</interceptors>-->
+
+        <action name="welcome" class="com.soshiant.server.action.login.WelcomeAction">
+            <result name="success" type="tiles" >welcomeInput</result>
+        </action>
+
+        <action name="changeLanguage" class="com.soshiant.server.action.login.WelcomeAction" method="changeLanguage">
+            <result name="success" type="tiles" >welcomeInput</result>
+        </action>
+
+        <action name="loginFail" class="com.soshiant.server.action.login.LoginAction" method="loginFailed">
+            <result name="input"   type="tiles" >loginInput</result>
+            <result name="error"   type="tiles" >loginInput</result>
+            <result name="login"   type="tiles" >loginInput</result>
+        </action>
+        <action name="loginSuccess" class="com.soshiant.server.action.login.LoginAction" method="loginSucceed">
+            <!--<interceptor-ref                   name="sessionInterceptor"/>-->
+            <result name="input"               type="tiles" >loginInput</result>
+            <result name="error"               type="tiles" >loginInput</result>
+            <result name="firstLoginChgPass"   type="tiles" >changePasswordSheet</result>
+            <result name="adminLogin"          type="tiles" >userWorkSheet</result>
+            <result name="commonUserLogin"     type="tiles" >userWorkSheet</result>
+        </action>
+    </package>
+
+    <include file="/strutsconfig/staff/struts-staff.xml"/>
+    <include file="/strutsconfig/site/struts-site.xml"/>
+    <include file="/strutsconfig/server/struts-server.xml"/>
+    <include file="/strutsconfig/chart/struts-chart.xml"/>
+    <include file="/strutsconfig/parameter/struts-parameter.xml"/>
+    <include file="/strutsconfig/usersetting/struts-usersetting.xml"/>
+    <include file="/strutsconfig/jasperreport/struts-jasperreport.xml"/>
+
+
+</struts>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+
+    <bean name="parametersFacade" id="parametersFacade" class="com.soshiant.server.facade.parameters.ParametersFacadeImpl"/>
+
+    <bean name="monitoringFacade" id="monitoringFacade" class="com.soshiant.server.facade.monitoring.MonitoringFacadeImpl"/>
+
+    <bean name="smsFacade" id="smsFacade" class="com.soshiant.server.facade.parameters.SmsFacadeImpl"/>
+
+    <bean name="emailFacade" id="emailFacade" class="com.soshiant.server.facade.parameters.email.EmailFacadeImpl"/>
+
+    <bean name="appLogFacade" id="appLogFacade" class="com.soshiant.server.facade.log.AppLogFacadeImpl"/>
+
+    <bean name="loginFacade" id="loginFacade" class="com.soshiant.server.facade.login.LoginFacadeImpl"/>
+
+    <bean name="userFacade" id="userFacade" class="com.soshiant.server.facade.user.UserFacadeImpl"/>
+
+    <bean name="staffFacade" id="staffFacade" class="com.soshiant.server.facade.staff.StaffFacadeImpl"/>
+
+    <bean name="serverFacade" id="serverFacade" class="com.soshiant.server.facade.server.ServerFacadeImpl"/>
+
+
+    <bean id="facadeExceptionHandle" class="com.soshiant.server.facade.FacadeResultHandler"/>
+
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="facadeExceptionHandle">
+            <aop:pointcut id="facadeLayerPointcut" expression="execution(* com.soshiant.server.facade..*Facade.*(..))"/>
+
+            <aop:around pointcut-ref="facadeLayerPointcut" method="handleFacadeResult"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

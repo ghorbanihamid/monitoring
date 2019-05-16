@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="serverPackage" extends="tiles-default" namespace="/">
+
+        <action name="serverInputAction" class="com.soshiant.server.action.server.ServerAction" method="showServerInputForm" >
+
+            <result name="input"   type="tiles">serverInput</result>
+            <result name="error"   type="tiles">serverFailed</result>
+            <result name="success" type="tiles">serverResult</result>
+            <result name="login"   type="tiles">serverResult</result>
+        </action>
+
+        <action name="serverSaveAction" class="com.soshiant.server.action.server.ServerAction" method="saveServerInfo" >
+            <result name="input"   type="tiles">serverInput</result>
+            <result name="error"   type="tiles">serverFailed</result>
+            <result name="success" type="tiles">serverResult</result>
+        </action>
+
+        <action name="monitorableServersListInputAction" class="com.soshiant.server.action.server.MonitorableServersListAction" method="showServerListInputForm">
+            <result name="input"   type="tiles">monitorableServerListInput</result>
+            <result name="error"   type="tiles">monitorableServerListFailed</result>
+            <result name="success" type="tiles">monitorableServerListResult</result>
+        </action>
+
+
+        <action name="monitorServerInputAction" class="com.soshiant.server.action.server.monitorServerAction" method="showMonitorServerInputForm">
+            <result name="input"   type="tiles">monitorServerInput</result>
+            <result name="error"   type="tiles">monitorServerFailed</result>
+            <result name="success" type="tiles">monitorServerResult</result>
+        </action>
+
+
+        <action name="rmfConfigInputAction" class="com.soshiant.server.action.server.RmfConfigAction" method="showRmfConfigInputForm">
+            <result name="input"   type="tiles">rmfConfigInput</result>
+            <result name="error"   type="tiles">rmfConfigFailed</result>
+            <result name="success" type="tiles">rmfConfigResult</result>
+        </action>
+
+
+    </package>
+
+    <package name="serverJsonPackage" extends="json-default">
+
+        <global-results>
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="Exception" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+        </global-results>
+
+        <global-exception-mappings>
+
+            <exception-mapping exception="java.lang.Exception" result="error" />
+
+        </global-exception-mappings>
+
+<!--====================================================================================================================-->
+        <action name="serverInfoJsonAction" class="com.soshiant.server.action.server.ServerAction" method="fetchServerInfo" >
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="success" type="json">
+                <param name="root">model</param>
+            </result>
+        </action>
+
+    <!--====================================================================================================================-->
+        <action name="serverListJsonAction" class="com.soshiant.server.action.server.MonitorableServersListAction" method="fetchMonitorableServersOfUserList">
+
+            <!--<result name="input" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--<result name="error" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <result name="success" type="json">
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">serverList\[\d+\]\..+$, actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+                <param name="includeProperties">^serverList\[\d+\]\..*</param>
+            </result>
+        </action>
+    <!--====================================================================================================================-->
+    </package>
+
+</struts>

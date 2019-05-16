@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="jasperReportPackage" extends="jasperreports-default" namespace="/">
+
+<!--============================================ Class List Print ======================================================-->
+        <action name="printDailyClassListAction" class="com.soshiant.server.action.classes.DailyClassListAction" method="printDailyClassList" >
+            <result name="success" type="jasper">
+
+                <!--The "location" parameter defines the location of the compiled jasper file, which will be filled by Struts 2 with our dataSource-->
+                <!--<param name="location">/jasperreport/classStudentsList.jasper</param>-->
+                <param name="location">/WEB-INF/classes/com/soshiant/jasperreport/classlist/classList.jasper</param>
+
+                <param name="reportParameters">classListParameters</param>
+
+                <!--The "dataSource" parameter defines the action property containing the collection of objects to use in our report.-->
+                <param name="dataSource">dailyClassList</param>
+
+                <param name="contentDisposition">attachment</param>
+
+                <param name="documentName">kordastiClassList</param>
+
+                <!--The "format" parameter specifies the output format of the report. Possible values include PDF, CSV, XLS and HTML.-->
+                <param name="format">PDF</param>
+            </result>
+
+            <result name="error" type="dispatcher">
+                <param name="location">/pages/globalError.jsp</param>
+            </result>
+        </action>
+
+<!--============================================ Class Students List Print =============================================-->
+        <action name="printDailyClassStudentsListAction" class="com.soshiant.server.action.classes.DailyClassStudentsListAction" method="createDailyClassStudentsListFile" >
+            <result name="success" type="jasper">
+                <param name="location">/WEB-INF/classes/com/kli/jasperreport/classStudents/classStudentsList.jasper</param>
+                <param name="reportParameters">dailyClassStudentsParameters</param>
+                <param name="dataSource">dailyClassStudentsList</param>
+                <param name="contentDisposition">attachment</param>
+                <param name="documentName">kordastiClassStudentsList</param>
+                <param name="format">PDF</param>
+            </result>
+
+            <result name="error" type="dispatcher">
+                <param name="location">/pages/globalError.jsp</param>
+            </result>
+        </action>
+
+    </package>
+
+</struts>

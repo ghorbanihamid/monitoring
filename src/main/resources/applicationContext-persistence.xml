@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+
+       default-autowire="byName"> <!-- Set default autowiring to byName so that beans are injected based on Name not by TYPE -->
+
+    <!-- JDBC connection properties are loaded to use in hibernate sessionfactory configuration -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:mail.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mySqlJPADataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--<property name="logWriter" value="true" />-->
+        <!--<property name="loginTimeout" value="180000" />-->
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+        <property name="dataSource" ref="mySqlJPADataSource" />
+
+        <!-- This makes persistence.xml is no longer necessary -->
+        <property name="packagesToScan" value="com.soshiant.server.model" />
+
+        <!--<property name="loadTimeWeaver">-->
+            <!--<bean class="org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver"/>-->
+        <!--</property>-->
+
+
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+
+        <!-- JpaVendorAdapter implementation for Hibernate EntityManager. Exposes Hibernate's persistence provider and EntityManager extension interface -->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true" />
+                <property name="generateDdl" value="true" />
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+            </bean>
+        </property>
+
+        <property name="persistenceUnitName" value="ApplicationEntityManager" />
+        <property name="persistenceUnitManager">
+            <bean class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+                <property name="defaultDataSource" ref="mySqlDataSource" />
+            </bean>
+        </property>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="javax.persistence.validation.mode">none</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="hibernate.connection.pool_size">5</prop>
+                <prop key="hibernate.jdbc.batch_size">0</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/jpetstore"/>-->
+    <!--<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/>-->
+
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="jpaTransactionManager"/>
+
+
+</beans>

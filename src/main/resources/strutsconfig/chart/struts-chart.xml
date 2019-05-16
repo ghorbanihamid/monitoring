@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="chartPackage" extends="tiles-default" namespace="/">
+
+        <action name="chartInputAction" class="com.soshiant.server.action.chart.ChartAction" method="showChartInputForm" >
+            <result name="input"   type="tiles">chartInput</result>
+            <result name="error"   type="tiles">chartFailed</result>
+            <result name="success" type="tiles">chartResult</result>
+        </action>
+
+        <action name="chartReportInputAction" class="com.soshiant.server.action.chart.report.ChartReportAction" method="showChartReportInputForm" >
+
+            <result name="input"   type="tiles">chartReportInput</result>
+            <result name="error"   type="tiles">chartReportFailed</result>
+            <result name="success" type="tiles">chartReportResult</result>
+        </action>
+
+        <action name="pieChartInputAction" class="com.soshiant.server.action.chart.PieChartAction" method="showPieChartInputForm" >
+
+            <result name="input"   type="tiles">pieChartInput</result>
+            <result name="error"   type="tiles">pieChartFailed</result>
+            <result name="success" type="tiles">pieChartResult</result>
+        </action>
+
+    </package>
+
+    <package name="chartJsonPackage" extends="json-default">
+
+        <global-results>
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+            <result name="Exception" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+        </global-results>
+
+        <global-exception-mappings>
+
+            <exception-mapping exception="java.lang.Exception" result="error" />
+
+        </global-exception-mappings>
+
+        <!--====================================================================================================================-->
+        <!--<action name="chartJsonAction" class="com.soshiant.server.action.chart.ChartAction" method="showChartResultForm" >-->
+
+            <!--<result name="input" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--<result name="error" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--&lt;!&ndash;<result name="success" type="json">&ndash;&gt;-->
+                <!--&lt;!&ndash;<param name="includeProperties">^chartDataList\[\d+\]\..*</param>&ndash;&gt;-->
+            <!--&lt;!&ndash;</result>&ndash;&gt;-->
+        <!--</action>-->
+
+        <action name="chartReportJsonAction" class="com.soshiant.server.action.chart.report.ChartReportAction" method="showChartReportResultForm" >
+
+            <!--<result name="input" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--<result name="error" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <result name="success" type="json">
+                <!--<param name="includeProperties">^chartRmfMonitoringDataList\[\d+\]\..*</param>-->
+                <!--<param name="includeProperties">^chartDataList\[\d+\]\..*</param>-->
+            </result>
+        </action>
+
+        <action name="permittedMetricIdListJsonAction" class="com.soshiant.server.action.chart.report.ChartReportAction" method="fetchPermittedRmfMetricIdList" >
+
+            <result name="success" type="json">
+                <param name="includeProperties">^permittedRmfMetricIdList\[\d+\]\..*</param>
+            </result>
+        </action>
+
+        <!--====================================================================================================================-->
+        <action name="pieChartJsonAction" class="com.soshiant.server.action.chart.PieChartAction" method="execute">
+
+            <!--<result name="input" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <!--<result name="error" type="json">-->
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+            <!--</result>-->
+
+            <result name="success" type="json">
+                <!--<param name="ignoreHierarchy">false</param>-->
+                <!--<param name="includeProperties">serverList\[\d+\]\..+$, actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>-->
+                <param name="includeProperties">^pieChartDataList\[\d+\]\..*</param>
+            </result>
+        </action>
+    <!--====================================================================================================================-->
+    </package>
+
+</struts>

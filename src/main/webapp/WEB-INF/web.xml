@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		                     http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <display-name>
+        Monitoring Web Application
+    </display-name>
+
+    <!-- Define the default CSS Theme -->
+    <context-param>
+        <param-name>csstheme</param-name>
+        <param-value>simplicity</param-value>
+    </context-param>
+
+    <!--&lt;!&ndash; Define the base name for a resource bundle for I18N &ndash;&gt;-->
+    <!--<context-param>-->
+        <!--<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>-->
+        <!--<param-value>ApplicationResources</param-value>-->
+    <!--</context-param>-->
+    <!--&lt;!&ndash; Fallback locale if no bundles found for browser's preferred locale &ndash;&gt;-->
+    <!--&lt;!&ndash; Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' &ndash;&gt;-->
+    <!--<context-param>-->
+        <!--<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>-->
+        <!--<param-value>en</param-value>-->
+    <!--</context-param>-->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:/applicationContext-thread.xml
+            classpath:/applicationContext-persistence.xml
+            classpath:/applicationContext-resources.xml
+            classpath:/applicationContext-dao.xml
+            classpath:/applicationContext-facade.xml
+            classpath:/applicationContext-actionServlet.xml
+            classpath:/applicationContext-security.xml
+            classpath:/applicationContext-service.xml
+        </param-value>
+    </context-param>
+
+    <!--============================================================================-->
+    <filter>
+        <filter-name>springRequestFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springRequestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--============================================================================-->
+    <!--Enables Spring Security-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--============================================================================-->
+    <!-- Enables struts2 -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <!--Tell Struts where to find annotations-->
+        <init-param>
+            <param-name>actionPackages</param-name>
+            <param-value>com.soshiant.server.action</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <!--============================================================================-->
+    <!--============================================================================-->
+    <!--<filter>-->
+        <!--<filter-name>clickstreamFilter</filter-name>-->
+        <!--<filter-class>com.opensymphony.clickstream.ClickstreamFilter</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>clickstreamFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+    <!--============================================================================-->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--============================================================================-->
+    <!--<filter>-->
+        <!--<filter-name>rewriteFilter</filter-name>-->
+        <!--<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>logLevel</param-name>-->
+            <!--<param-value>log4j</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>rewriteFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+        <!--<dispatcher>REQUEST</dispatcher>-->
+        <!--<dispatcher>FORWARD</dispatcher>-->
+    <!--</filter-mapping>-->
+    <!--============================================================================-->
+    <!-- Commented out for 2 reasons: 1) it's a pain when developing JSPs, and
+                                      2) it causes the Signup webtest to fail -->
+
+    <!--<filter>
+        <filter-name>lazyLoadingFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>-->
+    <!-- Use "org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter" if you're using JPA -->
+
+    <!--<filter-mapping>
+        <filter-name>lazyLoadingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+    <!--============================================================================-->
+    <!--<listener>-->
+        <!--<listener-class>com.opensymphony.clickstream.ClickstreamListener</listener-class>-->
+    <!--</listener>-->
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>-->
+    <!--</listener>-->
+
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
+    <!--</listener>-->
+
+    <!--<listener>-->
+        <!--<listener-class>org.apache.struts2.dispatcher.ng.listener.StrutsListener</listener-class>-->
+    <!--</listener>-->
+
+    <listener>
+    <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+
+    <!--============================================================================-->
+    <!--<servlet>-->
+        <!--<servlet-name>dispatcher</servlet-name>-->
+        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+        <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>dispatcher</servlet-name>-->
+        <!--<url-pattern>*.html</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>jspSupportServlet</servlet-name>-->
+        <!--<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>-->
+        <!--<load-on-startup>5</load-on-startup>-->
+    <!--</servlet>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>dwr-invoker</servlet-name>-->
+        <!--<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>debug</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>dwr-invoker</servlet-name>-->
+        <!--<url-pattern>/dwr/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>jcaptcha</servlet-name>
+        <servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jcaptcha</servlet-name>
+        <url-pattern>/jcaptcha.jpg</url-pattern>
+    </servlet-mapping>
+    <!--============================================================================-->
+    <context-param>
+        <param-name>
+            org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+        </param-name>
+
+        <param-value>
+            /WEB-INF/tiles.xml
+        </param-value>
+    </context-param>
+
+    <!--============================================================================-->
+    <jsp-config>
+
+        <taglib>
+            <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+            <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+        </taglib>
+
+    </jsp-config>
+    <!--============================================================================-->
+    <session-config>
+        <session-timeout>100</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>/welcome.action</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/globalError.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/pages/globalError.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/pages/globalError.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/globalError.jsp</location>
+    </error-page>
+
+</web-app>

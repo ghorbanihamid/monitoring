@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:util="http://www.springframework.org/schema/util"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                  http://www.springframework.org/schema/security
+                                  http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                                  http://www.springframework.org/schema/util
+                                  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+
+    <http pattern="/images/**"             security="none"/>
+    <http pattern="/struts/**"             security="none"/>
+    <http pattern="/themes/**"             security="none"/>
+    <http pattern="/styles/**"             security="none"/>
+    <http pattern="/css/**"                security="none"/>
+    <http pattern="/js/**"                 security="none"/>
+    <http pattern="/decorator/**"          security="none"/>
+    <http pattern="/welcome.action"        security="none"/>
+    <http pattern="/loginFail.action"      security="none"/>
+    <http pattern="/changeLanguage.action" security="none"/>
+    <http pattern="/jcaptcha*"             security="none"/>
+
+    <http auto-config="true" use-expressions="true">
+
+        <intercept-url pattern="/**" access="isFullyAuthenticated()" requires-channel="any"/>
+
+        <form-login login-page="/welcome.action"
+                    authentication-failure-url="/loginFail.action"
+                    always-use-default-target="true"
+                    login-processing-url="/j_spring_security_check"
+                    default-target-url="/loginSuccess.action"
+        />
+
+        <session-management invalid-session-url="/welcome.action" session-authentication-error-url="/loginFail.action">
+
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="false" expired-url="/welcome.action"/>
+
+        </session-management>
+
+        <logout invalidate-session="true" logout-url="/logout"/>
+
+    </http>
+
+    <beans:bean id="soshiantUserService" class="com.soshiant.server.service.users.SoshiantUserDetailsService">
+        <beans:property name="userService"       ref="userService"/>
+        <!--<beans:property name="userDao"       ref="userDao"/>-->
+        <beans:property name="appLogService" ref="appLogService"/>
+    </beans:bean>
+
+    <beans:bean id="soshiantPasswordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/>
+
+    <beans:bean id="soshiantSaltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <beans:property name="userPropertyToUse" value="salt"/>
+    </beans:bean>
+
+    <beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+
+        <beans:property name="userDetailsService" ref="soshiantUserService"/>
+        <beans:property name="passwordEncoder" ref="soshiantPasswordEncoder"/>
+        <beans:property name="saltSource" ref="soshiantSaltSource"/>
+
+    </beans:bean>
+
+    <authentication-manager alias="authenticationManager">
+
+        <authentication-provider ref="daoAuthenticationProvider"/>
+
+    </authentication-manager>
+
+
+    <!--<global-method-security secured-annotations="enabled"-->
+    <!--access-decision-manager-ref="aclDecisionManager"/>-->
+    <!--<beans:bean class="org.springframework.security.access.vote.AffirmativeBased" id="aclDecisionManager">-->
+    <!--<beans:property name="decisionVoters">-->
+    <!--<beans:list>-->
+    <!--&lt;!&ndash;<beans:ref bean="categoryReadVoter"/>&ndash;&gt;-->
+    <!--</beans:list>-->
+    <!--</beans:property>-->
+    <!--</beans:bean>-->
+
+    <!--<beans:bean class="org.springframework.security.acls.AclEntryVoter"-->
+    <!--id="categoryReadVoter">-->
+    <!--<beans:constructor-arg ref="aclService"/>-->
+    <!--<beans:constructor-arg value="VOTE_CATEGORY_READ"/>-->
+    <!--<beans:constructor-arg>-->
+    <!--<beans:array>-->
+    <!--<util:constant static-field="org.springframework.security.acls.domain.BasePermission.READ"/>-->
+    <!--</beans:array>-->
+    <!--</beans:constructor-arg>-->
+    <!--<beans:property name="processDomainObjectClass" value="com.packtpub.springsecurity.data.Category"/>-->
+    <!--</beans:bean>-->
+
+
+    <global-method-security secured-annotations="enabled"
+                            access-decision-manager-ref="aclDecisionManager"/>
+
+    <beans:bean class="org.springframework.security.access.vote.AffirmativeBased" id="aclDecisionManager">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:ref bean="categoryReadVoter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.security.acls.AclEntryVoter"
+                id="categoryReadVoter">
+        <beans:constructor-arg ref="aclService"/>
+        <beans:constructor-arg value="VOTE_CATEGORY_READ"/>
+        <beans:constructor-arg>
+            <beans:array>
+                <util:constant static-field="org.springframework.security.acls.domain.BasePermission.READ"/>
+            </beans:array>
+        </beans:constructor-arg>
+        <beans:property name="processDomainObjectClass" value="com.soshiant.server.model.staff.Staff"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.security.acls.jdbc.JdbcAclService"
+                id="aclService">
+        <beans:constructor-arg ref="mySqlDataSource"/>
+        <beans:constructor-arg ref="lookupStrategy"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.security.acls.jdbc.BasicLookupStrategy" id="lookupStrategy">
+        <beans:constructor-arg ref="mySqlDataSource"/>
+        <beans:constructor-arg ref="aclCache"/>
+        <beans:constructor-arg ref="aclAuthorizationStrategy"/>
+        <beans:constructor-arg ref="aclAuditLogger"/>
+    </beans:bean>
+
+    <beans:bean class="com.soshiant.server.security.acls.domain.NullAclCache" id="aclCache"/>
+
+    <beans:bean class="org.springframework.security.acls.domain.ConsoleAuditLogger" id="aclAuditLogger"/>
+
+    <beans:bean class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl" id="aclAuthorizationStrategy">
+        <beans:constructor-arg>
+            <beans:array>
+                <beans:ref local="aclAdminAuthority"/>
+                <beans:ref local="aclAdminAuthority"/>
+                <beans:ref local="aclAdminAuthority"/>
+            </beans:array>
+        </beans:constructor-arg>
+    </beans:bean>
+    <beans:bean class="org.springframework.security.core.authority.GrantedAuthorityImpl" id="aclAdminAuthority">
+        <beans:constructor-arg value="ROLE_ADMIN"/>
+    </beans:bean>
+</beans:beans>
+

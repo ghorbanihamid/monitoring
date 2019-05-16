@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="userSettingPackage" extends="tiles-default" namespace="/">
+
+        <action name="changeUserNameInputAction" class="com.soshiant.server.action.usersetting.ChangeUserNameAction" method="showChangeUserNameInputForm" >
+            <result name="input"   type="tiles" >changeUserNameInput</result>
+            <result name="error"   type="tiles" >changeUserNameFailed</result>
+            <result name="success" type="tiles" >changeUserNameResult</result>
+        </action>
+
+        <action name="newUserNameSaveAction" class="com.soshiant.server.action.usersetting.ChangeUserNameAction" method="saveNewUserName" >
+            <result name="input"   type="tiles" >changeUserNameInput</result>
+            <result name="error"   type="tiles" >changeUserNameFailed</result>
+            <result name="success" type="tiles" >changeUserNameResult</result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="changePasswordInputAction" class="com.soshiant.server.action.usersetting.ChangePasswordAction" method="showChangePasswordInputForm" >
+            <result name="input"   type="tiles" >changePasswordInput</result>
+            <result name="error"   type="tiles" >changePasswordFailed</result>
+            <result name="success" type="tiles" >changePasswordResult</result>
+        </action>
+
+        <action name="changePasswordSaveAction" class="com.soshiant.server.action.usersetting.ChangePasswordAction" method="saveNewPassword" >
+            <result name="input"   type="tiles" >changePasswordInput</result>
+            <result name="error"   type="tiles" >changePasswordFailed</result>
+            <result name="success" type="tiles" >changePasswordResult</result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="resetPasswordInputAction" class="com.soshiant.server.action.usersetting.ResetPasswordAction" method="showResetPasswordInputForm" >
+            <result name="input"   type="tiles" >resetPasswordInput</result>
+            <result name="error"   type="tiles" >resetPasswordFailed</result>
+            <result name="success" type="tiles" >resetPasswordResult</result>
+        </action>
+
+        <action name="resetPasswordSaveAction" class="com.soshiant.server.action.usersetting.ResetPasswordAction" method="resetUserPassword" >
+            <result name="input"   type="tiles" >resetPasswordInput</result>
+            <result name="error"   type="tiles" >resetPasswordFailed</result>
+            <result name="success" type="tiles" >resetPasswordResult</result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="changeEmailAddressInputAction" class="com.soshiant.server.action.usersetting.ChangeEmailAddressAction" method="showChangeEmailAddressInputForm" >
+            <result name="input"   type="tiles" >changeEmailAddressInput</result>
+            <result name="error"   type="tiles" >changeEmailAddressFailed</result>
+            <result name="success" type="tiles" >changeEmailAddressResult</result>
+        </action>
+
+        <action name="changeEmailAddressSaveAction" class="com.soshiant.server.action.usersetting.ChangeEmailAddressAction" method="saveNewEmailAddress" >
+            <result name="input"   type="tiles" >changeEmailAddressInput</result>
+            <result name="error"   type="tiles" >changeEmailAddressFailed</result>
+            <result name="success" type="tiles" >changeEmailAddressResult</result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="appLogListInputAction" class="com.soshiant.server.action.log.AppLogListAction" method="showAppLogListInputForm" >
+            <result name="input"   type="tiles" >appLogListInput</result>
+            <result name="error"   type="tiles" >appLogListFailed</result>
+            <result name="success" type="tiles" >appLogListResult</result>
+        </action>
+<!--====================================================================================================================-->
+    </package>
+
+<!--====================================================================================================================-->
+
+    <package name="userJsonPackage" extends="json-default">
+        <action name="userInfoForResetPasswordJsonAction" class="com.soshiant.server.action.usersetting.ResetPasswordAction" method="fetchUserInfoForResettingPassword" >
+
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors\[\d+\]\,actionMessages\[\d+\]\</param>
+            </result>
+
+            <result name="success" type="json">
+                <param name="root">userInfoDesc</param>
+            </result>
+
+        </action>
+
+    <!--====================================================================================================================-->
+        <action name="appLogListJsonAction" class="com.soshiant.server.action.log.AppLogListAction" method="fetchAppLogList">
+            <result name="success" type="json">
+                <param name="includeProperties">^appLogList\[\d+\]\..*</param>
+            </result>
+        </action>
+    <!--====================================================================================================================-->
+
+    </package>
+
+</struts>

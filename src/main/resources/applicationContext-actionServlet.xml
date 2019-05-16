@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+       default-autowire="byName">
+
+    <bean name="/welcome" class="com.soshiant.server.action.login.WelcomeAction" />
+
+    <bean name="/loginAction" class="com.soshiant.server.action.login.LoginAction" />
+
+    <bean name="/parametersAction" class="com.soshiant.server.action.parameter.ParametersAction" />
+
+    <bean name="/sendSmsTask" class="com.soshiant.server.periodictasks.SendSmsTask" />
+
+    <bean name="/receiveSmsTask" class="com.soshiant.server.periodictasks.ReceiveSmsTask" />
+
+    <bean name="/emailTask" class="com.soshiant.server.periodictasks.SendEmailTask" />
+
+    <bean name="/staffAction" class="com.soshiant.server.action.staff.StaffAction" />
+
+    <bean name="/staffListAction" class="com.soshiant.server.action.staff.StaffListAction" />
+
+    <bean name="/staffPositionAction" class="com.soshiant.server.action.staff.StaffPositionAction" />
+
+    <bean name="/changeEmailAddressAction" class="com.soshiant.server.action.usersetting.ChangeEmailAddressAction" />
+
+    <bean name="/changeUserNameAction" class="com.soshiant.server.action.usersetting.ChangeUserNameAction" />
+
+    <bean name="/changePasswordAction" class="com.soshiant.server.action.usersetting.ChangePasswordAction" />
+
+    <bean name="/resetPasswordAction" class="com.soshiant.server.action.usersetting.ResetPasswordAction" />
+
+    <bean name="/appLoglistAction" class="com.soshiant.server.action.log.AppLogListAction" />
+
+    <bean name="/siteAction" class="com.soshiant.server.action.site.SiteAction" />
+
+    <bean name="/siteListAction" class="com.soshiant.server.action.site.SiteListAction" />
+
+    <bean name="/serverAction" class="com.soshiant.server.action.server.ServerAction" />
+
+    <bean name="/serverListAction" class="com.soshiant.server.action.server.MonitorableServersListAction" />
+
+    <bean name="/serverListReportAction" class="com.soshiant.server.action.server.ServerListReportAction" />
+
+</beans>

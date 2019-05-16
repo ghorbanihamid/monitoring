@@ -1,0 +1,191 @@
+@charset "utf-8";
+body {
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:12px;
+	margin:0;
+	padding:0;
+	color:#959595;
+    background: #fef7db;
+    text-align: left;
+    direction: ltr;
+    vertical-align: middle;
+}
+html, .main {
+	padding:0;
+	margin:0;
+}
+.headerLayout {
+    border:0;
+    cellspacing:0;
+    cellpadding:0;
+    width: 100%;
+}
+.homeLayout {
+    border:0;
+    cellspacing:0;
+    cellpadding:0;
+    width: 1200px;
+}
+.baseLayout {
+    border:0;
+    cellspacing:0;
+    cellpadding:0;
+    width: 1200px;
+}
+.reportBaseLayout {
+    border:0;
+    cellspacing:0;
+    cellpadding:0;
+    width: 1200px;
+}
+.leftMenuLessBaseLayout {
+    border:0;
+    cellspacing:0;
+    cellpadding:0;
+    width: 1200px;
+}
+.header {
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:12px;
+    color: #ebebeb;
+    width:100%;
+    background:#ebebeb;
+}
+
+.menuContainer{
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
+    /*margin-top: 5px;*/
+    /*margin-bottom: 5px;*/
+    width: 200px;
+    float: left;
+}
+.menuBorder { margin:0 0 12px; padding:8px 16px 8px 24px;}
+
+ul.ul_topMenu { margin:0; padding:0 0 0 15px; list-style:none; color:#959595;}
+ul.ul_topMenu li { padding:4px 0;}
+ul.ul_topMenu li a { color:#000000; text-decoration:none; margin-left:-16px; padding:4px 8px 4px 16px; background:url(../images/li.gif) no-repeat left center;}
+ul.ul_topMenu li a:hover { color:#1e4f8a; font-weight:bold; text-decoration:none;}
+
+ul.ul_leftMenu { margin:0; padding:0 0 0 5px; list-style:none; color:#959595;}
+ul.ul_leftMenu li { padding:4px 0;}
+ul.ul_leftMenu li a { color:#000000; text-decoration:none; margin-left:-16px; padding:4px 8px 4px 16px; background:url(../images/li.gif) no-repeat left center;}
+ul.ul_leftMenu li a:hover { color:#1e4f8a; font-weight:bold; text-decoration:none;}
+
+.bodyContainer{
+    width: 100%;
+}
+.body{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    overflow-y:scroll;
+}
+.space{
+	clear:both;
+	padding:0;
+	margin:0;
+	width:100%;
+	font-size:0;
+	line-height:0;
+    height:50px;
+}
+.footer{
+    text-align: center;
+}
+
+.bodyHeaderRow {
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:14px;
+    font-weight: bold;
+    background-color: #EBEBEB;
+    color: #000000;
+    height: 25px;
+}
+
+.bodyElementsRows {
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:12px;
+	color: #000000;
+    /*background-color: #e2e1e1;*/
+    /*background-color: #EBEBEB;*/
+    height: 25px;
+}
+
+.bodySpaceRow {
+    height: 25px;
+}
+
+.bodyDividerRow {
+    height: 1px;
+    font-size: 1px;
+    background-image: url('../images/dash.gif');
+    background-position: bottom;
+    background-repeat: repeat-x;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bodyButtonRow {
+    background-color: #f2f2e1;
+    padding: 10px 0 10px 0;
+    height: 45px;
+}
+.buttonBack {
+    color: #FFFFFF;
+    font-family: Tahoma, Times New Roman, sans-serif;;
+    font-weight: normal;
+    background-color: #999999;
+    margin: 0 0 0 5px;
+    vertical-align: middle;
+    font-size: 100%;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+.buttonForward {
+    width: 75px;
+    height: 25px;
+    background-image: url('../images/button_bg.gif');
+    background-repeat: repeat-x;
+    border-color:#a52a2a red red #a52a2a ;
+    color: #FFFFFF;
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-weight: normal;
+    /*background-color: #a9a9a9;*/
+    margin: 0 0 0 5px;
+    vertical-align: middle;
+    font-size: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.commonElement {
+    width: 200px;
+    vertical-align:middle;
+}
+.actionMessageClass {
+    height: 25px;
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:12px;
+    font-weight: bold;
+	color: #3300ff;
+}
+
+.actionErrorClass {
+    height: 25px;
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size:12px;
+    font-weight: bold;
+	color: red;
+    /*overflow-y:auto;*/
+}
+
+.asterisk {
+    color: #FF0000;
+    font-family: Tahoma, Times New Roman, sans-serif;
+    font-size: 10px;
+}

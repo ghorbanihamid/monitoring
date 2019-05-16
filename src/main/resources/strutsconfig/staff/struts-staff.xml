@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="staffRegister" extends="tiles-default">
+
+<!--=============================================== staff ==============================================================-->
+
+        <action name="staffInputAction" class="com.soshiant.server.action.staff.StaffAction" method="showStaffInputForm">
+            <result name="input" type="tiles">staffInput</result>
+            <result name="error" type="tiles">staffFailed</result>
+            <result name="success" type="tiles">staffResult</result>
+        </action>
+
+
+        <action name="staffSaveAction" class="com.soshiant.server.action.staff.StaffAction" method="saveStaffInfo">
+            <result name="input" type="tiles">staffInput</result>
+            <result name="error" type="tiles">staffFailed</result>
+            <result name="success" type="tiles">staffResult</result>
+        </action>
+
+<!--============================================== Staff List ==========================================================-->
+
+        <action name="staffListInputAction" class="com.soshiant.server.action.staff.StaffListAction" method="showStaffListInputForm">
+            <result name="input" type="tiles">staffListInput</result>
+            <result name="error" type="tiles">staffListFailed</result>
+            <result name="success" type="tiles">staffListResult</result>
+        </action>
+
+<!--============================================== Staff Position ======================================================-->
+
+        <action name="staffPositionInputAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="showStaffPositionInputForm">
+            <result name="input" type="tiles">staffPositionsInput</result>
+            <result name="error" type="tiles">staffPositionsFailed</result>
+            <result name="success" type="tiles">staffPositionsResult</result>
+        </action>
+
+        <action name="staffPositionSaveAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="saveStaffPositionInfo">
+            <result name="input" type="tiles">staffPositionsInput</result>
+            <result name="error" type="tiles">staffPositionsFailed</result>
+            <result name="success" type="tiles">staffPositionsResult</result>
+        </action>
+
+        <action name="staffPositionEditAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="editStaffPosition">
+            <result name="input" type="tiles">staffPositionsInput</result>
+            <result name="error" type="tiles">staffPositionsFailed</result>
+            <result name="success" type="tiles">staffPositionsResult</result>
+        </action>
+
+<!--============================================== Daily Shift ======================================================-->
+
+        <action name="dailyShiftInputAction" class="com.soshiant.server.action.staff.shift.DailyShiftAction" method="showDailyShiftInputForm">
+            <result name="input" type="tiles">dailyShiftInput</result>
+            <result name="error" type="tiles">dailyShiftFailed</result>
+            <result name="success" type="tiles">dailyShiftResult</result>
+        </action>
+
+        <action name="dailyShiftSaveAction" class="com.soshiant.server.action.staff.shift.DailyShiftAction" method="saveDailyShiftInfo">
+            <result name="input" type="tiles">dailyShiftInput</result>
+            <result name="error" type="tiles">dailyShiftFailed</result>
+            <result name="success" type="tiles">dailyShiftResult</result>
+        </action>
+
+    </package>
+<!--====================================================================================================================-->
+<!--====================================================================================================================-->
+<!--====================================================================================================================-->
+    <package name="staffJsonPackage" extends="json-default">
+
+        <action name="staffInfoJsonAction" class="com.soshiant.server.action.staff.StaffAction" method="fetchStaffInfo" >
+            <result type="json">
+                <param name="root">model</param>
+            </result>
+        </action>
+
+        <!--<action name="staffNameJsonAction" class="com.soshiant.server.action.staff.StaffAction" method="getStaffInfo" >-->
+            <!--<result type="json">-->
+                <!--<param name="root">staffName</param>-->
+            <!--</result>-->
+        <!--</action>-->
+
+<!--====================================================================================================================-->
+        <action name="staffListJsonAction" class="com.soshiant.server.action.staff.StaffListAction" method="fetchStaffList">
+            <result name="success" type="json">
+                <param name="includeProperties">^staffList\[\d+\]\..*</param>
+            </result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="staffNameForPositionJsonAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="fetchStaffInfo" >
+            <result type="json">
+                <param name="root">staffNameForStaffPosition</param>
+            </result>
+        </action>
+
+        <action name="staffPositionListJsonAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="fetchStaffPositionListInfo">
+            <result name="success" type="json">
+                <param name="includeProperties">^staffPositionList\[\d+\]\..*</param>
+            </result>
+        </action>
+        <action name="staffPositionEditJsonAction" class="com.soshiant.server.action.staff.StaffPositionAction" method="editStaffPosition">
+            <result name="success" type="json">
+                <param name="root">staffPositionStatus</param>
+            </result>
+        </action>
+<!--====================================================================================================================-->
+        <action name="dailyShiftListJsonAction" class="com.soshiant.server.action.staff.shift.DailyShiftAction" method="fetchDailyShiftList">
+            <result name="success" type="json">
+                <!--<param name="includeProperties">^staffShiftList\[\d+\]\..*</param>-->
+                <!--<param name="root">staffShiftList</param>-->
+            </result>
+        </action>
+<!--====================================================================================================================-->
+<!--====================================================================================================================-->
+    </package>
+
+</struts>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+
+       default-autowire="byName"> <!-- Set default autowiring to byName so that beans are injected based on Name not by TYPE -->
+
+    <!-- JDBC connection properties are loaded to use in hibernate sessionfactory configuration -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:mail.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="mySqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--<property name="connectionProperties" value="${jdbc.password}" />-->
+        <!--<property name="logWriter" value="true" />-->
+        <!--<property name="loginTimeout" value="180000" />-->
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!-- Hibernate SessionFactory configuration. sessionFactory is used to create database connection by Hibernate.
+    This bean will be injected into HibernateDaoSupport,sessionFactory will be automatically injected
+    by spring as there is a setSessionFactory method in HibernateDaoSupport.
+     -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+
+        <property name="dataSource" ref="mySqlDataSource"/>
+
+        <!-- This makes persistence.xml is no longer necessary -->
+        <property name="packagesToScan" value="com.soshiant.server.model" />
+
+        <property name="annotatedClasses">
+            <list>
+                <value>com.soshiant.server.model.staff.Staff</value>
+                <value>com.soshiant.server.model.user.UserInfo</value>
+                <value>com.soshiant.server.model.log.AppLog</value>
+                <value>com.soshiant.server.model.parameters.City</value>
+                <value>com.soshiant.server.model.parameters.Bank</value>
+                <value>com.soshiant.server.model.position.Positions</value>
+                <value>com.soshiant.server.model.parameters.Parameters</value>
+                <value>com.soshiant.server.model.parameters.SendSmsInfo</value>
+                <value>com.soshiant.server.model.parameters.ReceivedSmsInfo</value>
+                <value>com.soshiant.server.model.parameters.EmailInfo</value>
+                <value>com.soshiant.server.model.staff.StaffPosition</value>
+                <value>com.soshiant.server.model.permission.Permissions</value>
+                <value>com.soshiant.server.model.group.Groups</value>
+                <value>com.soshiant.server.model.group.GroupPermission</value>
+                <value>com.soshiant.server.model.user.UserGroups</value>
+                <value>com.soshiant.server.model.server.Server</value>
+                <value>com.soshiant.server.model.monitoring.MainFrame.RMF.ConfiguredMetricsView</value>
+                <value>com.soshiant.server.model.monitoring.MainFrame.RMF.RMFMonitoringData</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="javax.persistence.validation.mode">none</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <!--<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>-->
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="hibernate.connection.pool_size">5</prop>
+                <prop key="hibernate.jdbc.batch_size">0</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Wrap database data manipulation methods with transactions -->
+    <bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+
+    <!-- the transactional advice -->
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!-- all methods starting with 'get' are read-only -->
+            <!--<tx:method name="get*" read-only="true"/>-->
+            <!-- other methods use the default transaction settings (see below) -->
+            <!--<tx:method name="*"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+</beans>
