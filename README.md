@@ -1,4 +1,4 @@
-# monitoring wen app
+# monitoring web app
 With This application is useful for a company who wants to monitor its IBM mainframe servers like CPU usage, ram usage and etc. It connects to RMF of mainframe for fetching data and stores this data for creating charts and if for example CPU usage is more than the specified threshold, it can send Message to administrator of server which registered in application.
 For using this application follow this steps:
 1)	run the SQL file inside DB folder to create the database with name of “monitoringdb”
